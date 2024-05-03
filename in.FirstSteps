@@ -1,0 +1,37 @@
+log ${workpath}LogInit_${FileNames}.log
+units           lj
+atom_style      bond
+
+dimension 3
+boundary s s s
+
+read_data ${InitFile} nocoeff extra/bond/per/atom 10000 extra/special/per/atom 10000
+
+pair_style lj/cut 2.5
+pair_coeff * * 0.298 1 2.5
+pair_modify shift yes
+
+bond_style fene
+bond_coeff 1 30 1.5 1 1
+bond_coeff 2 ${K} ${R0} 1 1
+special_bonds fene
+
+neighbor 1 bin
+neigh_modify every 1 delay 0
+
+comm_modify mode single cutoff 5
+
+fix 1 all nve
+fix 2 all langevin 1 1 1 ${LangSeed}
+
+compute 1 all gyration
+compute 2 all property/atom xu
+compute 3 all property/atom yu
+compute 4 all property/atom zu
+
+timestep 0.01
+
+thermo 20000
+thermo_style custom step temp lx ly lz
+
+run ${InitSteps}
