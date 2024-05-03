@@ -60,7 +60,7 @@ All but the last two arguments are required.
 - ```<bindsite>``` is the bead index of cohesin binding, if needed. Set it to 0 for nonspecific binding.
 - ```<r_c>``` is the minimum distance between beads considered for contact, in units of MD simulation distance units (Lennard Jones sigma). Typically use something close to 1.5.
 - ```<printR2contfrequency>``` is how frequently you want to print the contact matrix and internal mean square distances for the chain (units of MC steps).
-- ```<ring>``` should be 0 if you are simulating a linear chain, 1 if you are simulationg a ring. Use 0.
+- ```<ring>``` should be 0 if you are simulating a linear chain, 1 if you are simulationg a ring. Usually set to 0.
 - ```<RandSeed>``` is the seed used for the random number generator.
 - ```<p_on>``` is the probability that a cohesin binds a bead during one MC timestep. This is the probability **per bead**
 - ```<p_off>``` is the probability that a cohesin unbinds during one MC timestep. This is the probability **per bound cohesin**
