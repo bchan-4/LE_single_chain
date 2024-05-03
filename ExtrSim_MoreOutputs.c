@@ -296,8 +296,8 @@ int *getcontacts(int *matrixforcont, double *allcoords, int Nb, double contactra
 
 double *getR2mat(double *matrixforR2, double *allcoords, int Nb)
 {
-    // Add to contact matrix (matrixforcont) given coordinates (allcoords), number of beads (Nb)
-    // matrixforcont is in row major order
+    // Add to internal distances r2 matrix (matrixforR2) given coordinates (allcoords), number of beads (Nb)
+    // matrixforR2 is in row major order
     double *iicoords;
     double *jjcoords;
     iicoords = (double *)malloc(3 * sizeof(double));
