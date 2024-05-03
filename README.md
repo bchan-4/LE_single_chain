@@ -78,7 +78,7 @@ This code will have several output files that will be in ```<WorkPath>```. Each 
 - ```coordsLEUnwrap....txt``` has the coordinates of the chain formatted as a LAMMPS dump file with unwrapped coordinates.
 - ```Contacts....txt``` has the number of conformations in which two beads were within the cutoff distance r_c. First column is bead i, second column bead j, third column is number of contacts.
 - ```R2....txt``` has the mean squared distance between beads i and j, organized like ```Contacts....txt```.
-- ```ReeRg....txt``` has 5 columns. The time step, the end to end vector (x,y,z components), and the radius of gyration. This is calculated and printed out from LAMMPS with the same frequency as bead coordinates.
+- ```ReeRg....txt``` has 5 columns. The time step (in units of MD integration steps), the end to end vector (x,y,z components), and the radius of gyration. This is calculated and printed out from LAMMPS with the same frequency as bead coordinates.
 - ```LogInit...txt``` is the LAMMPS log file from the in.FirstSteps input script. LAMMPS log outputs are suppressed once extrusion starts.
 
 If you compile and run ```ExtrSim_MoreOutputs.c```, additional output files will be generated:
