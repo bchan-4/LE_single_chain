@@ -6,7 +6,7 @@ This document will instruct you how to compile and run a hybrid Molecular Dynami
 --------
 Prerequisites
 ----
-The main piece of code is ```ExtrSim.c```, which uses LAMMPS (23Jun2022 version) as a C library and also uses MPI for parallelization. To compile this code, you must first build LAMMPS as a shared library (see LAMMPS documentation https://docs.lammps.org/Build_link.html). You must also ensure that the caller code can find the library, which may require editing your environemntal variables. Note that this code was tested with OpenMPI 4.1.1.
+The main pieces of code are ```ExtrSim.c``` and ```ExtrSim_MoreOutputs.c```. The codes use LAMMPS (23Jun2022 version) as a C library and MPI for parallelization. To compile this code, you must first build LAMMPS as a shared library (see LAMMPS documentation https://docs.lammps.org/Build_link.html). You must also ensure that the caller code can find the library, which may require editing your environemntal variables. Note that this code was tested with OpenMPI 4.1.1.
 
 ------
 Compilation
@@ -73,4 +73,8 @@ This code will have several output files that will be in ```<WorkPath>```. Each 
 - ```coordsLEUnwrap....txt``` has the coordinates of the chain formatted as a LAMMPS dump file with unwrapped coordinates.
 - ```Contacts....txt``` has the number of conformations in which two beads were within the cutoff distance r_c. First column is bead i, second column bead j, third column is number of contacts.
 - ```R2....txt``` has the mean squared distance between beads i and j, organized like ```Contacts....txt```.
+
+If you compile and run ```ExtrSim_MoreOutputs.c```, additional output files will be generated:
 - ```CohLocs...txt``` has 2*T rows, where T is the number of MC steps. Each column shows the bead indices to which an extruder is bound. Ex., [1 10 50; 100 32 52] means three extruders were bound, one at beads 1-100, one at 10-32, and one at 50-52.
+- ```CohLocsEach_<Suffix>_<LoopNumber>.txt``` is similar to the previous file, but it only contains the bead indices to which a single extruder is bound. Each line is a new MC step. The ```<LoopNumber>``` increases as more cohesins bind to the chain, meaning there could be hundreds or thousands of these files by the end of a long simulation.
+- ```CohFluc_<Suffix>_<LoopNumber>.txt``` is similar to the previous file, but instead records the center of mass of the cohesin bond (x,y,z components). Each line is a new MC step.
