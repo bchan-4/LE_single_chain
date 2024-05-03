@@ -39,7 +39,7 @@ Ensure that your working directory has the following files:
   
 You will need to load the MPI implementation. Then, run a simulation with the following command:
 
-```mpirun -n <NTASKS> ./ExtrSim <MaxCoh> <p_jump> <NumBeads> <NumMCSteps> <outputfileSuffix> <K_coh> <R0_coh> <MDtauperMC> <MDtauperdump> <WorkPath> <InitialData> <BoxSize> <InitialMDTau> <t_int> <bindsite> <r_c> <calcR2contfrequency> <printR2contfrequency> <ReeRgfrequency> <ring> <RandSeed> <p_on> <p_off> <stopfilename> <NumberOfStops>```
+```mpirun -n <NTASKS> ./ExtrSim <MaxCoh> <p_jump> <NumBeads> <NumMCSteps> <outputfileSuffix> <K_coh> <R0_coh> <MDtauperMC> <MDtauperdump> <WorkPath> <InitialData> <InitialMDTau> <t_int> <bindsite> <r_c> <printR2contfrequency> <ring> <RandSeed> <p_on> <p_off> <stopfilename> <NumberOfStops>```
 
 All but the last two arguments are required.
 
@@ -49,8 +49,8 @@ All but the last two arguments are required.
 - ```<NumBeads>``` is the number of beads in the simulation
 - ```<NumMCSteps>``` is the number of MC steps you want to run for
 - ```<outputfileSuffix>``` is the suffix you want to be appended to all of your output files
-- ```<K_coh>``` is the spring constant of the cohesin bond. Set it to 1.
-- ```<R0_coh>``` is the max length of the cohesin bond. Set it to 4.
+- ```<K_coh>``` is the spring constant of the cohesin bond. Usually set to 1.
+- ```<R0_coh>``` is the max length of the cohesin bond. Usually set to 4.
 - ```<MDtauperMC>``` is the ratio of MD tau (Lennard Jones time) to MC steps. We usually use 5. This sets the average extrusion velocity.
 - ```<MDtauperdump>``` is how frequently you want to dump out bead coordinates in units of MD Tau. Usually we use 1, 5, or 10.
 - ```<WorkPath>``` is the path to the directory you want all of the output files to go
@@ -89,4 +89,4 @@ If you compile and run ```ExtrSim_MoreOutputs.c```, additional output files will
 ---
 Additional information
 ---
-The ```ExampleSubmission.joblst``` file has an example for how to start a simulation on an HPC system with a SLURM scheduler. The ```data.InitConformation``` file has the conformation of a single linear Kremer-Grest bead-spring polymer with 1000 beads. Note that two bond styles are used: the standard FENE bond a softer FENE bond to represent cohesin. ```in.FirstSteps``` is a LAMMPS input file used by the full simulation to run ```${InitSteps}``` molecular dynamics integration steps before extrusion starts, where ```${InitSteps}``` is ```<InitialMDTau>```/```<tint>``` from the simulation parameters dictated by the user at runtime. This LAMMPS input file specifices a theta-like implicit solvent (if there was no extrusion) using a Lennard-Jones pair potential between beads.
+The ```ExampleSubmission.joblst``` file has an example for how to start a simulation on an HPC system with a SLURM scheduler. The ```data.InitConformation``` file has the conformation of a single linear Kremer-Grest bead-spring polymer with 1000 beads. Note that two bond styles are used: the standard FENE bond a softer FENE bond to represent cohesin. ```in.FirstSteps``` is a LAMMPS input file used by the full simulation to run ```${InitSteps}``` molecular dynamics integration steps before extrusion starts, where ```${InitSteps}``` is ```<InitialMDTau>```/```<t_int>``` from the simulation parameters dictated by the user at runtime. This LAMMPS input file specifices a theta-like implicit solvent (if there was no extrusion) using a Lennard-Jones pair potential between beads.
