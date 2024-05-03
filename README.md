@@ -69,7 +69,7 @@ This code will have several output files that will be in ```<WorkPath>```. Each 
 - ```Status....txt``` has some input information and provides status updates (when the simulation is 25%, 50%, 75% done).
 - ```NumCoh....txt``` prints the number of cohesins bound to the chain every step
 - ```Acc....txt``` has four columns. The first column is the number of attempted moves made by a left cohesin domain. The second column is the number of accepted moves. The 3rd and 4th are the same, but for a right cohesin domain. Each column is a **running sum**.
-- ```Bind....txt``` has the MC step at which a cohesin bound to the chain
+- ```Bind....txt``` has three columns. The first two are the bead indices at which a cohesin bound the chain, and the third is the MC step at which a cohesin bound the chain
 - ```FinalLife....txt``` has two columns. The first column is the residence time of a cohesin when it unbinds (in MC steps). The second column is the loop length when it unbinds
 - ```coordsLEUnwrap....txt``` has the coordinates of the chain formatted as a LAMMPS dump file with unwrapped coordinates.
 - ```Contacts....txt``` has the number of conformations in which two beads were within the cutoff distance r_c. First column is bead i, second column bead j, third column is number of contacts.
