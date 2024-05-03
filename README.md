@@ -20,7 +20,7 @@ Once LAMMPS is built as a shared library, make sure that the following files are
 - ```ExtrSim.c``` is the main code with active loop extrusion. 
 - ```ExtrSim_MoreOutputs.c``` is the same simulation but generates additional output files.
 
-Before compiling the code, load your MPI implementation, for example with ``` module load OpenMPI/4.1.1 ``` or something similar. **Make sure to you use the same MPI implementation used for building LAMMPS.** 
+Before compiling the code, load your MPI implementation, for example with ``` module load OpenMPI/4.1.1 ``` or something similar. **Make sure you use the same MPI implementation used for building LAMMPS.** 
 
 Then, compile with ```make ExtrSim```. Note that the Makefile will need to be modified to fit your specific machine and directory structure. Specifically, the following snippets could be changed:
 - ```CC=mpicc``` to fit your C compiler
