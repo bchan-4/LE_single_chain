@@ -20,7 +20,7 @@ Before compiling the code, load your MPI implementation, for example with ``` mo
 
 Then, compile with ```make ExtrSim```. Note that the Makefile will need to be modified to fit your specific machine and directory structure. Specifically, the following snippets could be changed:
 - ```CC=mpicc``` to fit your C compiler
-- ```-I/path/to/LAMMPS/src/``` to specify the path of the LAMMPS src directory
+- ```/path/to/LAMMPS/src/``` to specify the path of the LAMMPS src directory
 - ```-llammps_mpi``` to specify the name and/or path of the LAMMPS shared library. In this case, the LAMMPS library was called ```liblammps_mpi.so``` and its path was in the ```LD_LIBRARY_PATH``` environment variable.
 
 There should now be an executable called ```ExtrSim``` in your working directory.
