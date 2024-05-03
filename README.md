@@ -1,7 +1,11 @@
 # Active loop extrusion simulation on a single polymer chain
-## Brian Chan, Duke University, 2023
+## Brian Chan, Rubinstein lab, Duke University (2023)
 
 This document will instruct you how to compile and run a hybrid Molecular Dynamics - Monte Carlo (MD-MC) simulation code for steady state active loop extrusion on a single polymer chain.
+
+See the preprint:
+
+B. Chan and M. Rubinstein, Activity-driven chromatin organization during interphase: compaction, segregation, and entanglement suppression. *bioRxiv* (2024). https://www.biorxiv.org/content/10.1101/2024.01.22.576729v1
 
 --------
 Prerequisites
@@ -31,7 +35,7 @@ Running a simulation
 Ensure that your working directory has the following files:
 - ```in.FirstSteps``` is a LAMMPS input file used for initial MD setup.
 - ```data.InitConformation``` is the LAMMPS data file with the initial chain conformation
-- ```ExampleSubmission.joblst``` is a barebones example submission script. This will depend on the machine on which you run the simulation.
+- ```ExampleSubmission.joblst``` is a barebones example submission script for a SLURM scheduler. This will depend on the machine on which you run the simulation.
   
 You will need to load the MPI implementation. Then, run a simulation with the following command:
 
@@ -82,3 +86,7 @@ If you compile and run ```ExtrSim_MoreOutputs.c```, additional output files will
 - ```CohLife...txt``` has T rows, where T is the number of MC steps. Each column shows the current residence time of a given cohesin (in units of MC steps). The columns correspond to the same cohesins as the columns in the previous file. Using the same example above, if this file reads [90 40 2], then the cohesin currently at beads 1-100 has been bound to the chain for 90 MC steps, the cohesin at 10-32 has been bound for 40 MC steps, and the cohesin at 50-52 has been bound for 2 steps.
 - ```CohLocsEach_<Suffix>_<LoopNumber>.txt``` is similar to the ```CohLocs...txt``` file, but it only contains the bead indices to which a single extruder is bound. Each line is a new MC step. The ```<LoopNumber>``` increases as more cohesins bind to the chain, meaning there could be hundreds or thousands of these files by the end of a long simulation.
 - ```CohFluc_<Suffix>_<LoopNumber>.txt``` is similar to the previous file, but instead records the center of mass of the cohesin bond (x,y,z components). Each line is a new MC step.
+---
+Additional information
+---
+The ```ExampleSubmission.joblst``` file has an example for how to start a simulation on an HPC system with a SLURM scheduler. The ```data.InitConformation``` file has the conformation of a single linear Kremer-Grest bead-spring polymer with 1000 beads. Note that two bond styles are used: the standard FENE bond a softer FENE bond to represent cohesin. ```in.FirstSteps``` is a LAMMPS input file used by the full simulation to run ```${InitSteps}``` molecular dynamics integration steps before extrusion starts, where ```${InitSteps}``` is ```<InitialMDTau>```/```<tint>``` from the simulation parameters dictated by the user at runtime. This LAMMPS input file specifices a theta-like implicit solvent (if there was no extrusion) using a Lennard-Jones pair potential between beads.
