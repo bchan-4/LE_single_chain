@@ -1,3 +1,10 @@
+###################
+# Brian Chan      #
+# 2023-2024       #
+# Rubinstein lab  #
+# Duke University #
+###################
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
