@@ -7,6 +7,9 @@ See the preprint:
 
 B. Chan and M. Rubinstein, Activity-driven chromatin organization during interphase: compaction, segregation, and entanglement suppression. *bioRxiv* (2024). https://www.biorxiv.org/content/10.1101/2024.01.22.576729v1
 
+Update- paper is now published:
+https://www.pnas.org/doi/10.1073/pnas.2401494121
+
 --------
 Prerequisites
 ----
